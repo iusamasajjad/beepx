@@ -7,6 +7,7 @@ import Image from "next/image"
 import pro1 from "./pro1.png"
 import pro2 from "./pro-2.png"
 import pro3 from "./pro-3.png"
+import search from "./search.png"
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -22,8 +23,6 @@ import {
 
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
-
-import { Input } from "@/components/ui/input"
 import {
   Table,
   TableBody,
@@ -187,7 +186,7 @@ export const columns: ColumnDef<Table>[] = [
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Rarity
+          RARITY
           <CaretSortIcon className="ml-2 h-4 w-4" />
         </Button>
       )
@@ -198,21 +197,21 @@ export const columns: ColumnDef<Table>[] = [
   },
   {
     accessorKey: "buyNow",
-    header: "buy Now",
+    header: "BUYNOW",
     cell: ({ row }) => (
       <div className="capitalize">{row.getValue("buyNow")}</div>
     ),
   },
   {
     accessorKey: "lastSale",
-    header: "LastSale",
+    header: "LASTSALE",
     cell: ({ row }) => (
       <div className="capitalize">{row.getValue("lastSale")}</div>
     ),
   },
   {
     accessorKey: "topBid",
-    header: "topBid",
+    header: "TOPBID",
     cell: ({ row }) => (
       <div className="capitalize">{row.getValue("topBid")}</div>
     ),
@@ -226,7 +225,7 @@ export const columns: ColumnDef<Table>[] = [
   },
   {
     accessorKey: "held",
-    header: "held",
+    header: "Held",
     cell: ({ row }) => <div className="capitalize">{row.getValue("held")}</div>,
   },
   {
@@ -246,6 +245,26 @@ export const columns: ColumnDef<Table>[] = [
       </svg>
     ),
     cell: ({ row }) => <div className="">{row.getValue("time")}m ago</div>,
+  },
+  {
+    accessorKey: "time",
+    header: "",
+    cell: () => (
+      <div className="">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          viewBox="0 0 20 20"
+          fill="none"
+        >
+          <path
+            d="M14.9333 6.81665H9.74167H5.06667C4.26667 6.81665 3.86667 7.78332 4.43334 8.34998L8.75 12.6667C9.44167 13.3583 10.5667 13.3583 11.2583 12.6667L12.9 11.025L15.575 8.34998C16.1333 7.78332 15.7333 6.81665 14.9333 6.81665Z"
+            fill="white"
+          />
+        </svg>
+      </div>
+    ),
   },
 ]
 
@@ -290,7 +309,7 @@ export const Items = () => {
               setBids(false)
               setHolders(false)
             }}
-            className={`flex gap-1 py-2 pt-8 items-center ${
+            className={`flex gap-1 py-2 pt-8 text-xs items-center ${
               itemsTable && "border-b border-yellow-400"
             }`}
           >
@@ -322,7 +341,7 @@ export const Items = () => {
               setBids(true)
               setHolders(false)
             }}
-            className={`flex gap-1 py-2 pt-8 items-center ${
+            className={`flex gap-1 py-2 text-xs pt-8 items-center ${
               bids && "border-b border-yellow-400"
             }`}
           >
@@ -358,7 +377,7 @@ export const Items = () => {
               setBids(false)
               setHolders(true)
             }}
-            className={`flex gap-1 py-2 pt-8 items-center ${
+            className={`flex gap-1 text-xs py-2 pt-8 items-center ${
               holders && "border-b border-yellow-400"
             }`}
           >
@@ -390,21 +409,82 @@ export const Items = () => {
           </button>
         </div>
         <div className="flex items-center gap-2">
-          <div className="flex-1 text-sm py-2 pt-8 text-muted-foreground">
+          <div className="flex text-xs py-2 pt-8 text-muted-foreground">
             {table.getFilteredSelectedRowModel().rows.length} /
             {table.getFilteredRowModel().rows.length} SELECTED
           </div>
-          <div className="flex items-center py-2 pt-8 py-4">
-            <Input
-              placeholder="Item Id"
+          <div className="flex relative items-center px-6 py-2 pt-8">
+            <input
+              placeholder="Item ID"
               value={
                 (table.getColumn("name")?.getFilterValue() as string) ?? ""
               }
               onChange={(event) =>
                 table.getColumn("name")?.setFilterValue(event.target.value)
               }
-              className="max-w-sm"
+              className="bg-black w-20 outline-none"
             />
+            <Image
+              className="absolute bottom-[12px] left-0"
+              src={search}
+              width={20}
+              height={20}
+              alt="search"
+            />
+          </div>
+          <div className="pt-6 flex items-center gap-3">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+            >
+              <path
+                d="M7.24 2H5.34C3.15 2 2 3.15 2 5.33V7.23C2 9.41 3.15 10.56 5.33 10.56H7.23C9.41 10.56 10.56 9.41 10.56 7.23V5.33C10.57 3.15 9.42 2 7.24 2Z"
+                fill="#333333"
+              />
+              <path
+                d="M18.67 2H16.77C14.59 2 13.44 3.15 13.44 5.33V7.23C13.44 9.41 14.59 10.56 16.77 10.56H18.67C20.85 10.56 22 9.41 22 7.23V5.33C22 3.15 20.85 2 18.67 2Z"
+                fill="#333333"
+              />
+              <path
+                d="M18.67 13.4301H16.77C14.59 13.4301 13.44 14.5801 13.44 16.7601V18.6601C13.44 20.8401 14.59 21.9901 16.77 21.9901H18.67C20.85 21.9901 22 20.8401 22 18.6601V16.7601C22 14.5801 20.85 13.4301 18.67 13.4301Z"
+                fill="#333333"
+              />
+              <path
+                d="M7.24 13.4301H5.34C3.15 13.4301 2 14.5801 2 16.7601V18.6601C2 20.8501 3.15 22.0001 5.33 22.0001H7.23C9.41 22.0001 10.56 20.8501 10.56 18.6701V16.7701C10.57 14.5801 9.42 13.4301 7.24 13.4301Z"
+                fill="#333333"
+              />
+            </svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+            >
+              <path
+                d="M19.9 13.5H4.1C2.6 13.5 2 14.14 2 15.73V19.77C2 21.36 2.6 22 4.1 22H19.9C21.4 22 22 21.36 22 19.77V15.73C22 14.14 21.4 13.5 19.9 13.5Z"
+                fill="#EFD22E"
+              />
+              <path
+                d="M19.9 2H4.1C2.6 2 2 2.64 2 4.23V8.27C2 9.86 2.6 10.5 4.1 10.5H19.9C21.4 10.5 22 9.86 22 8.27V4.23C22 2.64 21.4 2 19.9 2Z"
+                fill="#EFD22E"
+              />
+            </svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+            >
+              <path
+                d="M18.94 5.41994L13.77 2.42994C12.78 1.85994 11.23 1.85994 10.24 2.42994L5.01999 5.43994C2.94999 6.83994 2.82999 7.04994 2.82999 9.27994V14.7099C2.82999 16.9399 2.94999 17.1599 5.05999 18.5799L10.23 21.5699C10.73 21.8599 11.37 21.9999 12 21.9999C12.63 21.9999 13.27 21.8599 13.76 21.5699L18.98 18.5599C21.05 17.1599 21.17 16.9499 21.17 14.7199V9.27994C21.17 7.04994 21.05 6.83994 18.94 5.41994ZM12 15.2499C10.21 15.2499 8.74999 13.7899 8.74999 11.9999C8.74999 10.2099 10.21 8.74994 12 8.74994C13.79 8.74994 15.25 10.2099 15.25 11.9999C15.25 13.7899 13.79 15.2499 12 15.2499Z"
+                fill="#333333"
+              />
+            </svg>
           </div>
         </div>
       </div>

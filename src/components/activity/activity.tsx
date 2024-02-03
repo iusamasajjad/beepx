@@ -108,7 +108,7 @@ export const Activity = () => {
                   {tableRow.seller}
                 </TableCell>
                 <TableCell className="text-right text-green-400">
-                  <Button className="flex gap-1" size="sm" variant="yellow">
+                  <Button className="flex gap-1" size="sm" variant="yellowLight">
                     BUY
                   </Button>
                 </TableCell>
