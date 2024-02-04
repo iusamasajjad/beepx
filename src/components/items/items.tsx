@@ -8,6 +8,8 @@ import pro1 from "./pro1.png"
 import pro2 from "./pro-2.png"
 import pro3 from "./pro-3.png"
 import search from "./search.png"
+import profile2 from "./Bitcoin2.png"
+import { ScrollArea } from "@/components/ui/scroll-area"
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -35,7 +37,7 @@ import { Popup } from ".."
 
 const data: Table[] = [
   {
-    id: "m5gr84i9",
+    id: "m5gr84i8",
     name: "Justin Dorwart",
     image: bitCoin,
     rarity: "7586",
@@ -48,7 +50,7 @@ const data: Table[] = [
   },
   {
     id: "m5gr84i9",
-    name: "Justin Dorwart",
+    name: "Justin",
     image: bitCoin,
     rarity: "7586",
     buyNow: "17.50",
@@ -59,7 +61,7 @@ const data: Table[] = [
     time: "30",
   },
   {
-    id: "m5gr84i9",
+    id: "m5gr84i7",
     name: "Justin Dorwart",
     image: pro1,
     rarity: "7586",
@@ -71,7 +73,7 @@ const data: Table[] = [
     time: "30",
   },
   {
-    id: "m5gr84i9",
+    id: "m5gr84i6",
     name: "Justin Dorwart",
     image: pro2,
     rarity: "7586",
@@ -83,7 +85,7 @@ const data: Table[] = [
     time: "30",
   },
   {
-    id: "m5gr84i9",
+    id: "m5gr84i5",
     name: "Justin Dorwart",
     image: pro3,
     rarity: "7586",
@@ -95,7 +97,7 @@ const data: Table[] = [
     time: "30",
   },
   {
-    id: "m5gr84i9",
+    id: "m5gr84i4",
     name: "Justin Dorwart",
     image: bitCoin,
     rarity: "7586",
@@ -107,7 +109,7 @@ const data: Table[] = [
     time: "30",
   },
   {
-    id: "m5gr84i9",
+    id: "m5gr84i3",
     name: "Justin Dorwart",
     image: pro1,
     rarity: "7586",
@@ -119,7 +121,7 @@ const data: Table[] = [
     time: "30",
   },
   {
-    id: "m5gr84i9",
+    id: "m5gr84i2",
     name: "Justin Dorwart",
     image: pro2,
     rarity: "7586",
@@ -145,130 +147,171 @@ export type Table = {
   time: string
 }
 
-export const columns: ColumnDef<Table>[] = [
-  {
-    id: "select",
-    header: ({ table }) => (
-      <Checkbox
-        checked={
-          table.getIsAllPageRowsSelected() ||
-          (table.getIsSomePageRowsSelected() && "indeterminate")
-        }
-        onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-        aria-label="Select all"
-      />
-    ),
-    cell: ({ row }) => (
-      <Checkbox
-        checked={row.getIsSelected()}
-        onCheckedChange={(value) => row.toggleSelected(!!value)}
-        aria-label="Select row"
-      />
-    ),
-    enableSorting: false,
-    enableHiding: false,
-  },
-  {
-    accessorKey: "name",
-    header: "NAME",
-    cell: ({ row }) => (
-      <div className="flex items-center gap-1">
-        <Image src={row.original.image} width={30} height={30} alt="image1" />
-        <div className="capitalize">{row.getValue("name")}</div>
-      </div>
-    ),
-  },
-  {
-    accessorKey: "rarity",
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          RARITY
-          <CaretSortIcon className="ml-2 h-4 w-4" />
-        </Button>
-      )
-    },
-    cell: ({ row }) => (
-      <div className="capitalize pl-4">{row.getValue("rarity")}</div>
-    ),
-  },
-  {
-    accessorKey: "buyNow",
-    header: "BUYNOW",
-    cell: ({ row }) => (
-      <div className="capitalize">{row.getValue("buyNow")}</div>
-    ),
-  },
-  {
-    accessorKey: "lastSale",
-    header: "LASTSALE",
-    cell: ({ row }) => (
-      <div className="capitalize">{row.getValue("lastSale")}</div>
-    ),
-  },
-  {
-    accessorKey: "topBid",
-    header: "TOPBID",
-    cell: ({ row }) => (
-      <div className="capitalize">{row.getValue("topBid")}</div>
-    ),
-  },
-  {
-    accessorKey: "owner",
-    header: "OWNER",
-    cell: ({ row }) => (
-      <div className="capitalize">{row.getValue("owner")}</div>
-    ),
-  },
-  {
-    accessorKey: "held",
-    header: "Held",
-    cell: ({ row }) => <div className="capitalize">{row.getValue("held")}</div>,
-  },
-  {
-    accessorKey: "time",
-    header: () => (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="16"
-        height="16"
-        viewBox="0 0 16 16"
-        fill="none"
-      >
-        <path
-          d="M8.00001 1.33337C4.32668 1.33337 1.33334 4.32671 1.33334 8.00004C1.33334 11.6734 4.32668 14.6667 8.00001 14.6667C11.6733 14.6667 14.6667 11.6734 14.6667 8.00004C14.6667 4.32671 11.6733 1.33337 8.00001 1.33337ZM10.9 10.38C10.8067 10.54 10.64 10.6267 10.4667 10.6267C10.38 10.6267 10.2933 10.6067 10.2133 10.5534L8.14668 9.32004C7.63334 9.01337 7.25334 8.34004 7.25334 7.74671V5.01337C7.25334 4.74004 7.48001 4.51337 7.75334 4.51337C8.02668 4.51337 8.25334 4.74004 8.25334 5.01337V7.74671C8.25334 7.98671 8.45334 8.34004 8.66001 8.46004L10.7267 9.69337C10.9667 9.83337 11.0467 10.14 10.9 10.38Z"
-          fill="#B8B8B8"
+// Define a Row type
+export type Row = Table & {
+  isSelected: boolean
+}
+export const Items = () => {
+  const columns: ColumnDef<Table>[] = [
+    {
+      id: "select",
+      header: ({ table }) => (
+        <Checkbox
+          checked={
+            table.getIsAllPageRowsSelected() ||
+            (table.getIsSomePageRowsSelected() && "indeterminate")
+          }
+          onCheckedChange={(value: any) => {
+            table.toggleAllPageRowsSelected(!!value)
+            handleSelectAllChange(value)
+          }}
+          aria-label="Select all"
         />
-      </svg>
-    ),
-    cell: ({ row }) => <div className="">{row.getValue("time")}m ago</div>,
-  },
-  {
-    accessorKey: "time",
-    header: "",
-    cell: () => (
-      <div className="">
+      ),
+      cell: ({ row }) => (
+        <Checkbox
+          checked={row.getIsSelected() || getIsSelected(row.original.id)}
+          onCheckedChange={(value: any) => {
+            row.toggleSelected(!!value)
+            handleCheckboxChange(row.original.id, value)
+          }}
+          aria-label="Select row"
+        />
+      ),
+      enableSorting: false,
+      enableHiding: false,
+    },
+    {
+      accessorKey: "name",
+      header: "NAME",
+      cell: ({ row }) => (
+        <div className="flex items-center gap-1">
+          <Image src={row.original.image} width={30} height={30} alt="image1" />
+          <div className="capitalize">{row.getValue("name")}</div>
+        </div>
+      ),
+    },
+    {
+      accessorKey: "rarity",
+      header: ({ column }) => {
+        return (
+          <Button
+            variant="ghost"
+            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+          >
+            RARITY
+            <CaretSortIcon className="ml-2 h-4 w-4" />
+          </Button>
+        )
+      },
+      cell: ({ row }) => (
+        <div className="capitalize pl-4">{row.getValue("rarity")}</div>
+      ),
+    },
+    {
+      accessorKey: "buyNow",
+      header: "BUYNOW",
+      cell: ({ row }) => (
+        <div className="capitalize">{row.getValue("buyNow")}</div>
+      ),
+    },
+    {
+      accessorKey: "lastSale",
+      header: "LASTSALE",
+      cell: ({ row }) => (
+        <div className="capitalize">{row.getValue("lastSale")}</div>
+      ),
+    },
+    {
+      accessorKey: "topBid",
+      header: "TOPBID",
+      cell: ({ row }) => (
+        <div className="capitalize">{row.getValue("topBid")}</div>
+      ),
+    },
+    {
+      accessorKey: "owner",
+      header: "OWNER",
+      cell: ({ row }) => (
+        <div className="capitalize">{row.getValue("owner")}</div>
+      ),
+    },
+    {
+      accessorKey: "held",
+      header: "Held",
+      cell: ({ row }) => (
+        <div className="capitalize">{row.getValue("held")}</div>
+      ),
+    },
+    {
+      accessorKey: "time",
+      header: () => (
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="20"
-          height="20"
-          viewBox="0 0 20 20"
+          width="16"
+          height="16"
+          viewBox="0 0 16 16"
           fill="none"
         >
           <path
-            d="M14.9333 6.81665H9.74167H5.06667C4.26667 6.81665 3.86667 7.78332 4.43334 8.34998L8.75 12.6667C9.44167 13.3583 10.5667 13.3583 11.2583 12.6667L12.9 11.025L15.575 8.34998C16.1333 7.78332 15.7333 6.81665 14.9333 6.81665Z"
-            fill="white"
+            d="M8.00001 1.33337C4.32668 1.33337 1.33334 4.32671 1.33334 8.00004C1.33334 11.6734 4.32668 14.6667 8.00001 14.6667C11.6733 14.6667 14.6667 11.6734 14.6667 8.00004C14.6667 4.32671 11.6733 1.33337 8.00001 1.33337ZM10.9 10.38C10.8067 10.54 10.64 10.6267 10.4667 10.6267C10.38 10.6267 10.2933 10.6067 10.2133 10.5534L8.14668 9.32004C7.63334 9.01337 7.25334 8.34004 7.25334 7.74671V5.01337C7.25334 4.74004 7.48001 4.51337 7.75334 4.51337C8.02668 4.51337 8.25334 4.74004 8.25334 5.01337V7.74671C8.25334 7.98671 8.45334 8.34004 8.66001 8.46004L10.7267 9.69337C10.9667 9.83337 11.0467 10.14 10.9 10.38Z"
+            fill="#B8B8B8"
           />
         </svg>
-      </div>
-    ),
-  },
-]
+      ),
+      cell: ({ row }) => <div className="">{row.getValue("time")}m ago</div>,
+    },
+    {
+      accessorKey: "time",
+      header: "",
+      cell: () => (
+        <div className="">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 20 20"
+            fill="none"
+          >
+            <path
+              d="M14.9333 6.81665H9.74167H5.06667C4.26667 6.81665 3.86667 7.78332 4.43334 8.34998L8.75 12.6667C9.44167 13.3583 10.5667 13.3583 11.2583 12.6667L12.9 11.025L15.575 8.34998C16.1333 7.78332 15.7333 6.81665 14.9333 6.81665Z"
+              fill="white"
+            />
+          </svg>
+        </div>
+      ),
+    },
+  ]
+  // State to manage selected rows
+  const [selectedRows, setSelectedRows] = React.useState<
+    Record<string, boolean>
+  >({})
+  // Function to toggle selected row
+  const toggleSelected = (id: string, value: boolean) => {
+    setSelectedRows({ ...selectedRows, [id]: value })
+  }
 
-export const Items = () => {
+  // Function to check if a row is selected
+  const getIsSelected = (id: string) => {
+    return !!selectedRows[id]
+  }
+
+  // Function to handle checkbox change
+  const handleCheckboxChange = (id: string, value: boolean) => {
+    toggleSelected(id, value)
+  }
+  const selectedRowCount = Object.values(selectedRows).filter(Boolean).length
+
+  // Function to handle "Select All" checkbox change
+  const handleSelectAllChange = (value: boolean) => {
+    const newSelectedRows: Record<string, boolean> = {}
+    data.forEach((row) => {
+      newSelectedRows[row.id] = value
+    })
+    setSelectedRows(newSelectedRows)
+  }
+  const [tableRowView, setTableRowView] = React.useState(true)
+  const [tableColumnView, setTableColumnView] = React.useState(false)
   const [sorting, setSorting] = React.useState<SortingState>([])
   const [bids, setBids] = React.useState(false)
   const [holders, setHolders] = React.useState(false)
@@ -410,7 +453,7 @@ export const Items = () => {
         </div>
         <div className="flex items-center gap-2">
           <div className="flex text-xs py-2 pt-8 text-muted-foreground">
-            {table.getFilteredSelectedRowModel().rows.length} /
+            {selectedRowCount} /
             {table.getFilteredRowModel().rows.length} SELECTED
           </div>
           <div className="flex relative items-center px-6 py-2 pt-8">
@@ -434,6 +477,11 @@ export const Items = () => {
           </div>
           <div className="pt-6 flex items-center gap-3">
             <svg
+              className="cursor-pointer"
+              onClick={() => {
+                setTableRowView(false)
+                setTableColumnView(true)
+              }}
               xmlns="http://www.w3.org/2000/svg"
               width="24"
               height="24"
@@ -442,22 +490,27 @@ export const Items = () => {
             >
               <path
                 d="M7.24 2H5.34C3.15 2 2 3.15 2 5.33V7.23C2 9.41 3.15 10.56 5.33 10.56H7.23C9.41 10.56 10.56 9.41 10.56 7.23V5.33C10.57 3.15 9.42 2 7.24 2Z"
-                fill="#333333"
+                fill={` ${tableColumnView ? "#EFD22E" : "#333333"}`}
               />
               <path
                 d="M18.67 2H16.77C14.59 2 13.44 3.15 13.44 5.33V7.23C13.44 9.41 14.59 10.56 16.77 10.56H18.67C20.85 10.56 22 9.41 22 7.23V5.33C22 3.15 20.85 2 18.67 2Z"
-                fill="#333333"
+                fill={` ${tableColumnView ? "#EFD22E" : "#333333"}`}
               />
               <path
                 d="M18.67 13.4301H16.77C14.59 13.4301 13.44 14.5801 13.44 16.7601V18.6601C13.44 20.8401 14.59 21.9901 16.77 21.9901H18.67C20.85 21.9901 22 20.8401 22 18.6601V16.7601C22 14.5801 20.85 13.4301 18.67 13.4301Z"
-                fill="#333333"
+                fill={` ${tableColumnView ? "#EFD22E" : "#333333"}`}
               />
               <path
                 d="M7.24 13.4301H5.34C3.15 13.4301 2 14.5801 2 16.7601V18.6601C2 20.8501 3.15 22.0001 5.33 22.0001H7.23C9.41 22.0001 10.56 20.8501 10.56 18.6701V16.7701C10.57 14.5801 9.42 13.4301 7.24 13.4301Z"
-                fill="#333333"
+                fill={` ${tableColumnView ? "#EFD22E" : "#333333"}`}
               />
             </svg>
             <svg
+              className="cursor-pointer"
+              onClick={() => {
+                setTableRowView(true)
+                setTableColumnView(false)
+              }}
               xmlns="http://www.w3.org/2000/svg"
               width="24"
               height="24"
@@ -466,11 +519,11 @@ export const Items = () => {
             >
               <path
                 d="M19.9 13.5H4.1C2.6 13.5 2 14.14 2 15.73V19.77C2 21.36 2.6 22 4.1 22H19.9C21.4 22 22 21.36 22 19.77V15.73C22 14.14 21.4 13.5 19.9 13.5Z"
-                fill="#EFD22E"
+                fill={` ${tableRowView ? "#EFD22E" : "#333333"}`}
               />
               <path
                 d="M19.9 2H4.1C2.6 2 2 2.64 2 4.23V8.27C2 9.86 2.6 10.5 4.1 10.5H19.9C21.4 10.5 22 9.86 22 8.27V4.23C22 2.64 21.4 2 19.9 2Z"
-                fill="#EFD22E"
+                fill={` ${tableRowView ? "#EFD22E" : "#333333"}`}
               />
             </svg>
             <svg
@@ -489,74 +542,157 @@ export const Items = () => {
         </div>
       </div>
       <div className="rounded-md border">
-        <Table>
-          <TableHeader>
-            {table.getHeaderGroups().map((headerGroup) => (
-              <TableRow key={headerGroup.id}>
-                {headerGroup.headers.map((header) => {
-                  return (
-                    <TableHead key={header.id}>
-                      {header.isPlaceholder
-                        ? null
-                        : flexRender(
-                            header.column.columnDef.header,
-                            header.getContext()
-                          )}
-                    </TableHead>
-                  )
-                })}
-              </TableRow>
-            ))}
-          </TableHeader>
-          {itemsTable && (
-            <TableBody>
-              {table.getRowModel().rows?.length ? (
-                table.getRowModel().rows.map((row) => (
-                  <TableRow
-                    key={row.id}
-                    data-state={row.getIsSelected() && "selected"}
-                  >
-                    {row.getVisibleCells().map((cell) => (
-                      <TableCell key={cell.id}>
-                        {flexRender(
-                          cell.column.columnDef.cell,
-                          cell.getContext()
-                        )}
-                      </TableCell>
-                    ))}
-                  </TableRow>
-                ))
-              ) : (
-                <TableRow>
-                  <TableCell
-                    colSpan={columns.length}
-                    className="h-24 text-center"
-                  >
-                    No results.
-                  </TableCell>
+        {tableRowView && (
+          <ScrollArea className="h-[65vh] overflow-y-scroll">
+            <Table>
+            <TableHeader>
+              {table.getHeaderGroups().map((headerGroup) => (
+                <TableRow key={headerGroup.id}>
+                  {headerGroup.headers.map((header) => {
+                    return (
+                      <TableHead key={header.id}>
+                        {header.isPlaceholder
+                          ? null
+                          : flexRender(
+                              header.column.columnDef.header,
+                              header.getContext()
+                            )}
+                      </TableHead>
+                    )
+                  })}
                 </TableRow>
-              )}
-            </TableBody>
-          )}
-          {bids && (
-            <TableRow>
-              <TableCell colSpan={columns.length} className="h-24 text-center">
-                No results.
-              </TableCell>
-            </TableRow>
-          )}
-          {holders && (
-            <TableRow>
-              <TableCell colSpan={columns.length} className="h-24 text-center">
-                No results.
-              </TableCell>
-            </TableRow>
-          )}
-        </Table>
+              ))}
+            </TableHeader>
+            {itemsTable && (
+              
+              <TableBody>
+                {table.getRowModel().rows?.length ? (
+                  table.getRowModel().rows.map((row) => (
+                    <TableRow
+                      key={row.id}
+                      data-state={row.getIsSelected() && "selected"}
+                    >
+                      {row.getVisibleCells().map((cell) => (
+                        <TableCell key={cell.id}>
+                          {flexRender(
+                            cell.column.columnDef.cell,
+                            cell.getContext()
+                          )}
+                        </TableCell>
+                      ))}
+                    </TableRow>
+                  ))
+                ) : (
+                  <TableRow>
+                    <TableCell
+                      colSpan={columns.length}
+                      className="h-24 text-center"
+                    >
+                      No results.
+                    </TableCell>
+                  </TableRow>
+                )}
+              </TableBody>
+            )}
+            {bids && (
+              <TableRow>
+                <TableCell
+                  colSpan={columns.length}
+                  className="h-24 text-center"
+                >
+                  No results.
+                </TableCell>
+              </TableRow>
+            )}
+            {holders && (
+              <TableRow>
+                <TableCell
+                  colSpan={columns.length}
+                  className="h-24 text-center"
+                >
+                  No results.
+                </TableCell>
+              </TableRow>
+            )}
+          </Table>
+          </ScrollArea>
+        )}
       </div>
+      {tableColumnView && (
+      <ScrollArea className="rounded-md h-[65vh] overflow-y-scroll border">
+        
+          <div className="flex mx-1 flex-wrap w-full">
+            {data.map((item, index) => (
+              <div
+                className={`mx-2 px-3 w-[30%] my-2 py-3 hover:bg-[#efd22e33] ${
+                  selectedRows[item.id] ? "bg-[#efd22e33]" : ""
+                }`}
+                key={index}
+              >
+                <div className="relative w-fit">
+                  <Image src={profile2} alt="" />
+                  <Checkbox
+                    className="absolute right-2 bg-black top-3"
+                    checked={getIsSelected(item.id)}
+                    onCheckedChange={(value: any) =>
+                      handleCheckboxChange(item.id, value)
+                    }
+                    aria-label={`Select row ${item.id}`}
+                  />
+                </div>
+                <div>{item.name}</div>
+                <div className="flex my-2 items-center justify-between">
+                  <div>
+                    <p className="uppercase text-xs text-gray-400">buynow</p>
+                    <p className="text-xs">{item.buyNow}</p>
+                  </div>
+                  <div>
+                    <p className="uppercase text-xs text-gray-400">lastsale</p>
+                    <p className="text-xs">{item.lastSale}</p>
+                  </div>
+                </div>
+                <div className="flex my-2 items-center justify-between">
+                  <div>
+                    <p className="uppercase text-xs text-gray-400">topbid</p>
+                    <p className="text-xs">{item.topBid}</p>
+                  </div>
+                  <div>
+                    <p className="uppercase text-xs text-gray-400">owner</p>
+                    <p className="text-xs">{item.owner}</p>
+                  </div>
+                </div>
+                <div className="flex my-2 items-center justify-between">
+                  <div>
+                    <p className="uppercase text-xs text-gray-400">#held</p>
+                    <p className="text-xs">{item.held}</p>
+                  </div>
+                  <div>
+                    <div className="flex justify-end">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="17"
+                        viewBox="0 0 16 17"
+                        fill="none"
+                      >
+                        <path
+                          d="M7.99992 2.08337C4.32659 2.08337 1.33325 5.07671 1.33325 8.75004C1.33325 12.4234 4.32659 15.4167 7.99992 15.4167C11.6733 15.4167 14.6666 12.4234 14.6666 8.75004C14.6666 5.07671 11.6733 2.08337 7.99992 2.08337ZM10.8999 11.13C10.8066 11.29 10.6399 11.3767 10.4666 11.3767C10.3799 11.3767 10.2933 11.3567 10.2133 11.3034L8.14658 10.07C7.63325 9.76337 7.25325 9.09004 7.25325 8.49671V5.76337C7.25325 5.49004 7.47992 5.26337 7.75325 5.26337C8.02659 5.26337 8.25325 5.49004 8.25325 5.76337V8.49671C8.25325 8.73671 8.45325 9.09004 8.65992 9.21004L10.7266 10.4434C10.9666 10.5834 11.0466 10.89 10.8999 11.13Z"
+                          fill="#B8B8B8"
+                        />
+                      </svg>
+                    </div>
+                    <p className="text-xs">{item.time}m ago</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        
+      </ScrollArea>
+      )}
       {itemsTable && (
         <div className="flex items-center space-x-2 py-4">
-          <Popup total={table.getFilteredSelectedRowModel().rows.length} />
+          <Popup total={selectedRowCount} />
         </div>
       )}
     </div>
