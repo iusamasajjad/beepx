@@ -23,10 +23,6 @@ export const Carousel = () => {
     <div>
       <div>
         <Swiper
-          style={{
-            "--swiper-navigation-color": "transparent",
-            "--swiper-pagination-color": "transparent",
-          }}
           autoplay={{
             delay: 2500,
             disableOnInteraction: false,
