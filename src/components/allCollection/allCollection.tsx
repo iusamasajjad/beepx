@@ -45,7 +45,7 @@ const data: Table[] = [
   },
 ]
 
-export type Table = {
+type Table = {
   id: string
   name: string
   image: any
@@ -59,9 +59,7 @@ export type Table = {
 }
 
 // Define a Row type
-export type Row = Table & {
-  isSelected: boolean
-}
+
 export const AllCollection = () => {
   const columns: ColumnDef<Table>[] = [
     {
