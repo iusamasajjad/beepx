@@ -153,13 +153,13 @@ export const PortfolioCollection = () => {
                   {tableRow.name}
                 </TableCell>
                 <TableCell>
-                  <div className="flex items-center gap-2">
+                  <div className="flex justify-end items-center gap-2">
                     {tableRow.topBid}
                     <Image width={15} height={15} src={coin} alt="floor" />
                   </div>
                 </TableCell>
                 <TableCell>
-                  <div className="flex items-center gap-2">
+                  <div className="flex justify-end items-center gap-2">
                     {tableRow.lastSale}
                     <Image width={15} height={15} src={coin} alt="floor" />
                   </div>
