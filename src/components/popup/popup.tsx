@@ -340,7 +340,9 @@ export const Popup = ({ total }: PopupProps) => {
             </DialogDescription>
           </DialogHeader>
           <DialogFooter className="border-t py-3">
-            <Button variant="green" size="lg" type="submit">EXECUTE 4 TRANSACTIONS</Button>
+            <Button variant="green" size="lg" type="submit">
+              EXECUTE 4 TRANSACTIONS
+            </Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>

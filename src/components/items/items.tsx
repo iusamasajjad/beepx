@@ -453,8 +453,8 @@ export const Items = () => {
         </div>
         <div className="flex items-center gap-2">
           <div className="flex text-xs py-2 pt-8 text-muted-foreground">
-            {selectedRowCount} /
-            {table.getFilteredRowModel().rows.length} SELECTED
+            {selectedRowCount} /{table.getFilteredRowModel().rows.length}{" "}
+            SELECTED
           </div>
           <div className="flex relative items-center px-6 py-2 pt-8">
             <input
@@ -545,82 +545,80 @@ export const Items = () => {
         {tableRowView && (
           <ScrollArea className="h-[65vh] overflow-y-scroll">
             <Table>
-            <TableHeader>
-              {table.getHeaderGroups().map((headerGroup) => (
-                <TableRow key={headerGroup.id}>
-                  {headerGroup.headers.map((header) => {
-                    return (
-                      <TableHead key={header.id}>
-                        {header.isPlaceholder
-                          ? null
-                          : flexRender(
-                              header.column.columnDef.header,
-                              header.getContext()
-                            )}
-                      </TableHead>
-                    )
-                  })}
-                </TableRow>
-              ))}
-            </TableHeader>
-            {itemsTable && (
-              
-              <TableBody>
-                {table.getRowModel().rows?.length ? (
-                  table.getRowModel().rows.map((row) => (
-                    <TableRow
-                      key={row.id}
-                      data-state={row.getIsSelected() && "selected"}
-                    >
-                      {row.getVisibleCells().map((cell) => (
-                        <TableCell key={cell.id}>
-                          {flexRender(
-                            cell.column.columnDef.cell,
-                            cell.getContext()
-                          )}
-                        </TableCell>
-                      ))}
-                    </TableRow>
-                  ))
-                ) : (
-                  <TableRow>
-                    <TableCell
-                      colSpan={columns.length}
-                      className="h-24 text-center"
-                    >
-                      No results.
-                    </TableCell>
+              <TableHeader>
+                {table.getHeaderGroups().map((headerGroup) => (
+                  <TableRow key={headerGroup.id}>
+                    {headerGroup.headers.map((header) => {
+                      return (
+                        <TableHead key={header.id}>
+                          {header.isPlaceholder
+                            ? null
+                            : flexRender(
+                                header.column.columnDef.header,
+                                header.getContext()
+                              )}
+                        </TableHead>
+                      )
+                    })}
                   </TableRow>
-                )}
-              </TableBody>
-            )}
-            {bids && (
-              <TableRow>
-                <TableCell
-                  colSpan={columns.length}
-                  className="h-24 text-center"
-                >
-                  No results.
-                </TableCell>
-              </TableRow>
-            )}
-            {holders && (
-              <TableRow>
-                <TableCell
-                  colSpan={columns.length}
-                  className="h-24 text-center"
-                >
-                  No results.
-                </TableCell>
-              </TableRow>
-            )}
-          </Table>
+                ))}
+              </TableHeader>
+              {itemsTable && (
+                <TableBody>
+                  {table.getRowModel().rows?.length ? (
+                    table.getRowModel().rows.map((row) => (
+                      <TableRow
+                        key={row.id}
+                        data-state={row.getIsSelected() && "selected"}
+                      >
+                        {row.getVisibleCells().map((cell) => (
+                          <TableCell key={cell.id}>
+                            {flexRender(
+                              cell.column.columnDef.cell,
+                              cell.getContext()
+                            )}
+                          </TableCell>
+                        ))}
+                      </TableRow>
+                    ))
+                  ) : (
+                    <TableRow>
+                      <TableCell
+                        colSpan={columns.length}
+                        className="h-24 text-center"
+                      >
+                        No results.
+                      </TableCell>
+                    </TableRow>
+                  )}
+                </TableBody>
+              )}
+              {bids && (
+                <TableRow>
+                  <TableCell
+                    colSpan={columns.length}
+                    className="h-24 text-center"
+                  >
+                    No results.
+                  </TableCell>
+                </TableRow>
+              )}
+              {holders && (
+                <TableRow>
+                  <TableCell
+                    colSpan={columns.length}
+                    className="h-24 text-center"
+                  >
+                    No results.
+                  </TableCell>
+                </TableRow>
+              )}
+            </Table>
           </ScrollArea>
         )}
       </div>
       {tableColumnView && (
-      <ScrollArea className="rounded-md h-[65vh] overflow-y-scroll border">
-        
+        <ScrollArea className="rounded-md h-[65vh] overflow-y-scroll border">
           <div className="flex mx-1 flex-wrap w-full">
             {data.map((item, index) => (
               <div
@@ -687,8 +685,7 @@ export const Items = () => {
               </div>
             ))}
           </div>
-        
-      </ScrollArea>
+        </ScrollArea>
       )}
       {itemsTable && (
         <div className="flex items-center space-x-2 py-4">
