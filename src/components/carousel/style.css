@@ -3,11 +3,17 @@
     height: 100%;
   }
   .swiper-button-prev{
-    display: none;
+    color: transparent;
   }
   .swiper-button-next{
-    display: none;
+    color: transparent;
   }
+  /* .swiper-navigation-color{
+    color: transparent;
+  }
+  .swiper-pagination-color{
+    color: transparent;
+  } */
   .swiper-slide {
     text-align: center;
     font-size: 18px;

@@ -1,6 +1,6 @@
 "use client"
 // Import Swiper React components
-import { Swiper, SwiperSlide } from "swiper/react"
+import { Swiper, SwiperClass, SwiperSlide } from "swiper/react"
 
 // Import Swiper styles
 import "swiper/css"
@@ -11,18 +11,20 @@ import "./style.css"
 
 // import required modules
 import { Autoplay, FreeMode, Navigation, Thumbs } from "swiper/modules"
-import React from "react"
+import React, { useRef } from "react"
 import Image from "next/image"
 import Rabit from "./rabit.png"
 import rabit from "./rabit2.png"
 
 export const Carousel = () => {
-  const [thumbsSwiper, setThumbsSwiper] = React.useState(null)
-
+  const [thumbsSwiper, setThumbsSwiper] = React.useState<SwiperClass>()
   return (
     <div>
       <div>
         <Swiper
+          style={{
+           
+          }}
           autoplay={{
             delay: 2500,
             disableOnInteraction: false,
