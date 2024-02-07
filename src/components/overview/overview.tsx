@@ -6,6 +6,8 @@ import { Button } from "../ui/button"
 
 const styling = {
   backgroundImage: `url('${heroImage.src}')`,
+  backgroundPosition:"center",
+  backgroundSize:"cover",
 }
 export const Overview = () => {
   return (
