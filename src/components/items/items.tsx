@@ -185,7 +185,15 @@ export const Items = () => {
       accessorKey: "name",
       header: "NAME",
       cell: ({ row }) => (
-        <div className="flex items-center gap-1">
+        <div
+          onClick={() => {
+            handleCheckboxChange(
+              row.original.id,
+              !selectedRows[row.original.id]
+            )
+          }}
+          className="flex items-center gap-1"
+        >
           <Image src={row.original.image} width={30} height={30} alt="image1" />
           <div className="capitalize">{row.getValue("name")}</div>
         </div>
@@ -205,42 +213,102 @@ export const Items = () => {
         )
       },
       cell: ({ row }) => (
-        <div className="capitalize pl-4">{row.getValue("rarity")}</div>
+        <div
+          onClick={() => {
+            handleCheckboxChange(
+              row.original.id,
+              !selectedRows[row.original.id]
+            )
+          }}
+          className="capitalize pl-4"
+        >
+          {row.getValue("rarity")}
+        </div>
       ),
     },
     {
       accessorKey: "buyNow",
       header: "BUYNOW",
       cell: ({ row }) => (
-        <div className="capitalize">{row.getValue("buyNow")}</div>
+        <div
+          onClick={() => {
+            handleCheckboxChange(
+              row.original.id,
+              !selectedRows[row.original.id]
+            )
+          }}
+          className="capitalize"
+        >
+          {row.getValue("buyNow")}
+        </div>
       ),
     },
     {
       accessorKey: "lastSale",
       header: "LASTSALE",
       cell: ({ row }) => (
-        <div className="capitalize">{row.getValue("lastSale")}</div>
+        <div
+          onClick={() => {
+            handleCheckboxChange(
+              row.original.id,
+              !selectedRows[row.original.id]
+            )
+          }}
+          className="capitalize"
+        >
+          {row.getValue("lastSale")}
+        </div>
       ),
     },
     {
       accessorKey: "topBid",
       header: "TOPBID",
       cell: ({ row }) => (
-        <div className="capitalize">{row.getValue("topBid")}</div>
+        <div
+          onClick={() => {
+            handleCheckboxChange(
+              row.original.id,
+              !selectedRows[row.original.id]
+            )
+          }}
+          className="capitalize"
+        >
+          {row.getValue("topBid")}
+        </div>
       ),
     },
     {
       accessorKey: "owner",
       header: "OWNER",
       cell: ({ row }) => (
-        <div className="capitalize">{row.getValue("owner")}</div>
+        <div
+          onClick={() => {
+            handleCheckboxChange(
+              row.original.id,
+              !selectedRows[row.original.id]
+            )
+          }}
+          className="capitalize"
+        >
+          {row.getValue("owner")}
+        </div>
       ),
     },
     {
       accessorKey: "held",
       header: "Held",
       cell: ({ row }) => (
-        <div className="capitalize">{row.getValue("held")}</div>
+        <div
+          onClick={() => {
+            handleCheckboxChange(
+              row.original.id,
+              !selectedRows[row.original.id]
+            )
+          }}
+          className="capitalize"
+        >
+          {row.getValue("held")}
+        </div>
       ),
     },
     {
@@ -259,7 +327,19 @@ export const Items = () => {
           />
         </svg>
       ),
-      cell: ({ row }) => <div className="">{row.getValue("time")}m ago</div>,
+      cell: ({ row }) => (
+        <div
+          onClick={() => {
+            handleCheckboxChange(
+              row.original.id,
+              !selectedRows[row.original.id]
+            )
+          }}
+          className=""
+        >
+          {row.getValue("time")}m ago
+        </div>
+      ),
     },
     {
       accessorKey: "time",
@@ -622,6 +702,9 @@ export const Items = () => {
           <div className="flex mx-1 flex-wrap w-full">
             {data.map((item, index) => (
               <div
+                onClick={() => {
+                  handleCheckboxChange(item.id, !selectedRows[item.id])
+                }}
                 className={`mx-2 px-3 w-[30%] my-2 py-3 hover:bg-[#efd22e33] ${
                   selectedRows[item.id] ? "bg-[#efd22e33]" : ""
                 }`}
