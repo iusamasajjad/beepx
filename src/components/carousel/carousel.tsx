@@ -25,10 +25,7 @@ export const Carousel = () => {
           style={{
            
           }}
-          autoplay={{
-            delay: 2500,
-            disableOnInteraction: false,
-          }}
+         
           navigation={true}
           thumbs={{ swiper: thumbsSwiper }}
           modules={[FreeMode, Navigation, Thumbs,Autoplay]}
