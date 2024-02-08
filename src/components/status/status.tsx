@@ -12,7 +12,7 @@ export const Status = ({ setSelectedValue }: statusProp) => {
           <div className="flex items-center space-x-2">
             <RadioGroupItem
               onClick={() => {
-                setSelectedValue ? setSelectedValue("option-two") : ""
+                setSelectedValue ? setSelectedValue("option-one") : ""
               }}
               value="option-one"
               id="option-one"
