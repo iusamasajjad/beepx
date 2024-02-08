@@ -151,7 +151,11 @@ export type Table = {
 export type Row = Table & {
   isSelected: boolean
 }
-export const Items = () => {
+
+interface itemsProp {
+  selectedValue: string
+}
+export const Items = ({ selectedValue }: itemsProp) => {
   const columns: ColumnDef<Table>[] = [
     {
       id: "select",
@@ -772,7 +776,7 @@ export const Items = () => {
       )}
       {itemsTable && (
         <div className="flex items-center space-x-2 py-4">
-          <Popup total={selectedRowCount} />
+          <Popup total={selectedRowCount} selectedValue={selectedValue} />
         </div>
       )}
     </div>
