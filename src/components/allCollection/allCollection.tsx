@@ -30,6 +30,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
+import { SalePopup } from ".."
 const data: Table[] = [
   {
     id: "m5gr84i8",
@@ -631,9 +632,7 @@ export const AllCollection = () => {
         )}
       </div>
       <div className="flex px-4 my-3 gap-3">
-        <Button variant="yellow" size="lg">
-          List 0
-        </Button>
+      {<SalePopup />}
         <Button className="flex gap-4" variant="yellow" size="lg">
           ACCEPT 0
           <span className="flex gap-1">

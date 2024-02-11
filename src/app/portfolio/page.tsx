@@ -8,8 +8,11 @@ import {
 import Image from "next/image"
 import profile from "./profile.png"
 import coin from "./coin.png"
+import { useState } from "react"
 
 const Portolio = () => {
+  // State to keep track of the selected radio button value
+  const [listValue, setListValue] = useState("listed")
   return (
     <div>
       <Header button={false} profileInfo={true} />
@@ -42,7 +45,12 @@ const Portolio = () => {
               </div>
             </div>
           </div>
-          <Status />
+          <Status
+            option1={"UNLISTED"}
+            listValue={listValue}
+            setListValue={setListValue}
+            option2={"LISTED"}
+          />
           <PortfolioCollection />
         </div>
         <div className="w-[60%]">
