@@ -12,16 +12,11 @@ import icon from "./icon.png"
 import bitcoin from "./floorimage.png"
 
 import { Button } from "../ui/button"
-interface SalePopupProp {
-  selectedValue?: string
-}
-export const SalePopup = ({ selectedValue }: SalePopupProp) => {
+export const SalePopup = () => {
   return (
     <div>
       <Dialog>
-        <DialogTrigger
-          className="px-4 h-10 rounded-lg text-sm text-black bg-yellow-400"
-        >
+        <DialogTrigger className="px-4 h-10 rounded-lg text-sm text-black bg-yellow-400">
           List 0
         </DialogTrigger>
         <DialogContent>
@@ -392,11 +387,7 @@ export const SalePopup = ({ selectedValue }: SalePopupProp) => {
           </DialogHeader>
           <DialogFooter className="border-t py-3">
             <Button
-              className={` text-black ${
-                selectedValue === "option-one"
-                  ? "bg-green-400"
-                  : "bg-red-600 text-white"
-              }`}
+              className="text-black bg-green-400 "
               variant="green"
               size="lg"
               type="submit"
