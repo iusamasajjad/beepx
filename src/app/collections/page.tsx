@@ -19,7 +19,7 @@ const Collection = () => {
       <Profile />
       <div className="flex border-t border-gray-800">
         <div className="border-r w-[20%] border-gray-800">
-          <Status setSelectedValue={setSelectedValue} />
+          <Status setSelectedValue={setSelectedValue} selectedValue={selectedValue} option1={"BUY MODE"} option2={"SALE MODE"} />
           <Traits />
         </div>
         <div className="w-[55%]">
