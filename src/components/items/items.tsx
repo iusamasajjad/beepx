@@ -652,6 +652,11 @@ export const Items = ({ selectedValue }: itemsProp) => {
                   {table.getRowModel().rows?.length ? (
                     table.getRowModel().rows.map((row) => (
                       <TableRow
+                        className={` ${
+                          !row.id == !selectedRows[row.original.id]
+                            ? "bg-[#efd22e33]"
+                            : ""
+                        }`}
                         key={row.id}
                         data-state={row.getIsSelected() && "selected"}
                       >
