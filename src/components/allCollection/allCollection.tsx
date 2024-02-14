@@ -97,7 +97,17 @@ export const AllCollection = () => {
       cell: ({ row }) => (
         <div className="flex items-center gap-1">
           <Image src={row.original.image} width={30} height={30} alt="image1" />
-          <div className="capitalize">{row.getValue("name")}</div>
+          <div
+            onClick={() => {
+              handleCheckboxChange(
+                row.original.id,
+                !selectedRows[row.original.id]
+              )
+            }}
+            className="capitalize"
+          >
+            {row.getValue("name")}
+          </div>
         </div>
       ),
     },
@@ -509,8 +519,19 @@ export const AllCollection = () => {
                     {table.getRowModel().rows?.length ? (
                       table.getRowModel().rows.map((row) => (
                         <TableRow
+                          onClick={() =>
+                            handleCheckboxChange(
+                              row.original.id,
+                              !selectedRows[row.original.id]
+                            )
+                          }
                           key={row.id}
                           data-state={row.getIsSelected() && "selected"}
+                          className={` ${
+                            !row.id == !selectedRows[row.original.id]
+                              ? "bg-[#efd22e33]"
+                              : ""
+                          }`}
                         >
                           {row.getVisibleCells().map((cell) => (
                             <TableCell key={cell.id}>
@@ -563,6 +584,9 @@ export const AllCollection = () => {
             <div className="flex mx-1 flex-wrap w-full">
               {data.map((item, index) => (
                 <div
+                onClick={() => {
+                  handleCheckboxChange(item.id, !selectedRows[item.id])
+                }}
                   className={`mx-2 px-3 w-[30%] my-2 py-3 hover:bg-[#efd22e33] ${
                     selectedRows[item.id] ? "bg-[#efd22e33]" : ""
                   }`}
@@ -632,7 +656,7 @@ export const AllCollection = () => {
         )}
       </div>
       <div className="flex px-4 my-3 gap-3">
-      {<SalePopup />}
+        {<SalePopup />}
         <Button className="flex gap-4" variant="yellow" size="lg">
           ACCEPT 0
           <span className="flex gap-1">
